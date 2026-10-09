@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Validar remesa SEPA XML online gratis · CuotaSEPA</title>
+<meta name="description" content="Comprueba tu fichero de remesa SEPA (pain.008 adeudos o pain.001 transferencias) antes de enviarlo al banco: sumas de control, IBAN, mandatos, fechas, caracteres y direcciones. Gratis y sin subir el fichero.">
+<link rel="canonical" href="https://dgayosoberlanga-ui.github.io/herramientas/validar-remesa-sepa/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="CuotaSEPA">
+<meta property="og:title" content="Validar remesa SEPA XML online gratis · CuotaSEPA">
+<meta property="og:description" content="Comprueba tu fichero de remesa SEPA (pain.008 adeudos o pain.001 transferencias) antes de enviarlo al banco: sumas de control, IBAN, mandatos, fechas, caracteres y direcciones. Gratis y sin subir el fichero.">
+<meta property="og:url" content="https://dgayosoberlanga-ui.github.io/herramientas/validar-remesa-sepa/">
+<meta property="og:image" content="https://dgayosoberlanga-ui.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2340c2">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=e278264d">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Validador de remesas SEPA XML", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "offers": {"@type": "Offer", "price": "0", "priceCurrency": "EUR"}, "url": "https://dgayosoberlanga-ui.github.io/herramientas/validar-remesa-sepa/"}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="deadline" role="note"><div class="wrap"><span><b>Aplazado:</b> el EPC retrasa sin fecha el fin de las direcciones no estructuradas previsto para el 15/11/2026.</span><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Qué significa para tus remesas →</a></div></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="CuotaSEPA, inicio">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="4" fill="var(--accent)"/><g fill="var(--sheet)"><circle cx="9" cy="9" r="1.3"/><circle cx="9" cy="14" r="1.3"/><circle cx="9" cy="19" r="1.3"/><circle cx="9" cy="24" r="1.3"/></g><path d="M14 16.5l3.2 3.2L24 12.5" stroke="var(--sheet)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Cuota<b>SEPA</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/herramientas/" aria-current="page">Herramientas gratis</a>
+      <a href="/guias/" >Guías</a>
+      <a href="/precios/" >Precios</a>
+      <a class="btn btn-primary btn-sm" href="/generador/" >Abrir generador</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap app-shell">
+  <div style="display:grid;gap:10px;max-width:780px">
+    <p class="crumbs"><a href="/herramientas/">Herramientas</a> / Validar remesa XML</p>
+    <h1 style="font-size:var(--step-3)">Validar una remesa SEPA (XML)</h1>
+    <p class="lead">Abre el fichero de adeudos (pain.008) o transferencias (pain.001) que vas a enviar, o el que te ha rechazado el banco. Lo revisamos aquí mismo: el fichero no se sube a ningún sitio.</p>
+  </div>
+  <div class="drop" id="drop">
+    <p class="drop-title">Arrastra aquí tu fichero .xml</p>
+    <div class="toolbar" style="justify-content:center">
+      <label class="btn btn-primary" for="file">Elegir fichero XML</label>
+      <input type="file" id="file" accept=".xml,text/xml,application/xml" hidden>
+    </div>
+  </div>
+  <div id="result" hidden style="display:grid;gap:16px">
+    <div class="summary-bar" id="summary"></div>
+    <div id="issues" style="display:grid;gap:10px"></div>
+    <div id="blocks" class="table-wrap"></div>
+    <div class="toolbar" style="justify-content:space-between">
+      <div class="filters" role="group" aria-label="Filtrar">
+        <button type="button" data-filter="all" aria-pressed="true">Todos</button>
+        <button type="button" data-filter="bad" aria-pressed="false">Con errores</button>
+        <button type="button" data-filter="warn" aria-pressed="false">Con avisos</button>
+      </div>
+      <button type="button" class="btn btn-secondary" id="export">Exportar a CSV (Excel)</button>
+    </div>
+    <div class="table-wrap table-scroll"><table class="tbl" id="tx"><thead><tr><th>#</th><th>Estado</th><th>Nombre</th><th>IBAN</th><th class="amount">Importe</th><th>Mandato</th><th>Firma</th><th>Fecha</th><th>Concepto y avisos</th></tr></thead><tbody></tbody></table></div>
+    <p class="hint" id="note"></p>
+  </div>
+  <article class="prose" style="margin-top:20px">
+    <h2>Qué comprueba el validador</h2>
+    <ul>
+      <li><b>Estructura:</b> que sea un fichero SEPA de adeudos (pain.008) o transferencias (pain.001) y su versión.</li>
+      <li><b>Sumas de control:</b> que el número de operaciones (NbOfTxs) y la suma (CtrlSum) de la cabecera y de cada bloque coincidan con los recibos. Es una de las causas de rechazo más habituales.</li>
+      <li><b>Cuentas:</b> IBAN de cada recibo y de la cuenta de cobro, incluidos los dígitos de control internos de las cuentas españolas.</li>
+      <li><b>Identificador de acreedor:</b> formato y dígitos de control.</li>
+      <li><b>Mandatos:</b> que cada adeudo tenga referencia y fecha de firma, y que la firma no sea posterior al cobro.</li>
+      <li><b>Fechas:</b> que la fecha de cobro no haya pasado y sea día hábil TARGET2 (no fin de semana, 1 de enero, Viernes Santo, Lunes de Pascua, 1 de mayo, 25 y 26 de diciembre).</li>
+      <li><b>Caracteres:</b> tildes, eñes y símbolos que el estándar SEPA no admite en nombres y conceptos.</li>
+      <li><b>Direcciones:</b> direcciones sin población o país, que dejarán de admitirse cuando el EPC fije la fecha (estaba prevista el 15/11/2026 y se aplazó).</li>
+      <li><b>Duplicados:</b> referencias EndToEndId repetidas.</li>
+    </ul>
+    <p>El validador no sustituye la validación de tu banco, que puede tener reglas propias (por ejemplo, plazos de presentación o límites contratados). Si tu banco te da un código de error concreto, búscalo en nuestra <a href="/guias/codigos-devolucion-recibos-sepa/">guía de códigos</a>.</p>
+  </article>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>CuotaSEPA</h4>
+      <ul>
+        <li><a href="/generador/">Generador de remesas SEPA</a></li>
+        <li><a href="/precios/">Precios</a></li>
+        <li><a href="/activar/">Activar clave Pro</a></li>
+        <li><a href="/descargas/plantilla-remesa-sepa.xlsx">Plantilla Excel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Herramientas gratis</h4>
+      <ul>
+        <li><a href="/herramientas/validar-remesa-sepa/">Validar remesa XML</a></li>
+        <li><a href="/herramientas/identificador-acreedor/">Identificador de acreedor</a></li>
+        <li><a href="/herramientas/validar-iban/">Validar IBAN y BIC</a></li>
+        <li><a href="/herramientas/mandato-sepa/">Mandato SEPA para imprimir</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="/guias/remesa-sepa-desde-excel/">Remesa SEPA desde Excel</a></li>
+        <li><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Direcciones estructuradas (15/11/2026)</a></li>
+        <li><a href="/guias/frst-rcur-ooff-fnal/">FRST, RCUR, OOFF y FNAL</a></li>
+        <li><a href="/guias/codigos-devolucion-recibos-sepa/">Códigos de devolución</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/aviso-legal/">Aviso legal</a></li>
+        <li><a href="/legal/privacidad/">Privacidad</a></li>
+        <li><a href="/legal/condiciones/">Condiciones de uso</a></li>
+        <li><span class="muted">Contacto: </span><a href="mailto:dgayosoberlanga@gmail.com">dgayosoberlanga@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="footnote">CuotaSEPA genera ficheros en tu navegador: los IBAN y datos de tus socios no se envían a ningún servidor. No somos una entidad financiera ni intervenimos en los cobros; el fichero lo presentas tú en tu banco. Comprueba siempre las condiciones de tu entidad.</p>
+  </div>
+</footer>
+<script type="module" src="/assets/js/tool-xml.js?v=e278264d"></script>
+
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Generador de remesas SEPA desde Excel | CuotaSEPA</title>
+<meta name="description" content="Convierte tu Excel de socios o clientes en el fichero XML de adeudos directos SEPA (Cuaderno 19.14) que pide tu banco. Valida IBAN, mandatos y fechas. Gratis hasta 25 recibos.">
+<link rel="canonical" href="https://dgayosoberlanga-ui.github.io/generador/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="CuotaSEPA">
+<meta property="og:title" content="Generador de remesas SEPA desde Excel | CuotaSEPA">
+<meta property="og:description" content="Convierte tu Excel de socios o clientes en el fichero XML de adeudos directos SEPA (Cuaderno 19.14) que pide tu banco. Valida IBAN, mandatos y fechas. Gratis hasta 25 recibos.">
+<meta property="og:url" content="https://dgayosoberlanga-ui.github.io/generador/">
+<meta property="og:image" content="https://dgayosoberlanga-ui.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2340c2">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=e278264d">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "SoftwareApplication", "name": "CuotaSEPA — Generador de remesas SEPA", "applicationCategory": "FinanceApplication", "operatingSystem": "Web", "url": "https://dgayosoberlanga-ui.github.io/generador/", "inLanguage": "es", "offers": [{"@type": "Offer", "price": "0", "priceCurrency": "EUR", "description": "Gratis hasta 25 recibos por remesa"}, {"@type": "Offer", "price": "69", "priceCurrency": "EUR", "description": "Pro anual, recibos ilimitados"}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="deadline" role="note"><div class="wrap"><span><b>Aplazado:</b> el EPC retrasa sin fecha el fin de las direcciones no estructuradas previsto para el 15/11/2026.</span><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Qué significa para tus remesas →</a></div></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="CuotaSEPA, inicio">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="4" fill="var(--accent)"/><g fill="var(--sheet)"><circle cx="9" cy="9" r="1.3"/><circle cx="9" cy="14" r="1.3"/><circle cx="9" cy="19" r="1.3"/><circle cx="9" cy="24" r="1.3"/></g><path d="M14 16.5l3.2 3.2L24 12.5" stroke="var(--sheet)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Cuota<b>SEPA</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/herramientas/" >Herramientas gratis</a>
+      <a href="/guias/" >Guías</a>
+      <a href="/precios/" >Precios</a>
+      <a class="btn btn-primary btn-sm" href="/generador/" aria-current="page">Abrir generador</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap app-shell" id="app">
+  <div class="grid-2" style="align-items:end">
+    <div style="display:grid;gap:8px">
+      <p class="eyebrow">Adeudos directos SEPA · Cuaderno 19.14 XML</p>
+      <h1 style="font-size:var(--step-3)">Generador de remesas SEPA</h1>
+      <p class="muted">Sube tu Excel, revisa los avisos y descarga el fichero para tu banco. Todo ocurre en este navegador: los IBAN de tus socios no se envían a ningún sitio.</p>
+    </div>
+    <div class="toolbar" style="justify-content:flex-end">
+      <span id="plan-pill" class="pill pill-neutral">Plan gratuito · hasta 25 recibos</span>
+      <a class="btn btn-ghost btn-sm" href="/activar/" id="plan-link">Tengo una clave Pro</a>
+    </div>
+  </div>
+
+  <!-- 1. Creditor -->
+  <section class="panel" aria-labelledby="h-creditor">
+    <div class="panel-head">
+      <h2 id="h-creditor"><span class="n">1</span>Tu entidad (quien cobra)</h2>
+      <span class="hint" id="creditor-saved"></span>
+    </div>
+    <div class="panel-body">
+      <div class="grid-2">
+        <div class="field">
+          <label for="cr-name">Nombre de la entidad</label>
+          <input type="text" id="cr-name" autocomplete="organization" placeholder="Club Deportivo Los Álamos">
+        </div>
+        <div class="field">
+          <label for="cr-nif">NIF de la entidad</label>
+          <input type="text" id="cr-nif" class="mono" placeholder="G12345674" maxlength="12">
+          <span class="hint" id="cr-nif-status">Lo usamos para comprobar o calcular el identificador de acreedor.</span>
+        </div>
+        <div class="field">
+          <label for="cr-ics">Identificador de acreedor SEPA</label>
+          <div class="toolbar" style="flex-wrap:nowrap">
+            <input type="text" id="cr-ics" class="mono" placeholder="ES37000G12345674" maxlength="35">
+            <button type="button" class="btn btn-secondary btn-sm" id="cr-ics-calc">Calcular</button>
+          </div>
+          <span class="hint" id="cr-ics-status">Te lo da tu banco al contratar los adeudos. Suele ser ES + 2 dígitos + 000 + NIF.</span>
+        </div>
+        <div class="field">
+          <label for="cr-iban">IBAN donde cobras</label>
+          <input type="text" id="cr-iban" class="mono" placeholder="ES66 2100 0418 4012 3456 7891" autocomplete="off">
+          <span class="hint" id="cr-iban-status">La cuenta de la entidad en la que entrarán los cobros.</span>
+        </div>
+      </div>
+      <details class="advanced">
+        <summary>BIC y opciones del acreedor</summary>
+        <div class="grid-2">
+          <div class="field">
+            <label for="cr-bic">BIC de tu banco (opcional)</label>
+            <input type="text" id="cr-bic" class="mono" placeholder="Se rellena solo para bancos españoles" maxlength="11">
+          </div>
+          <div class="field">
+            <label for="cr-suffix">Sufijo del identificador</label>
+            <input type="text" id="cr-suffix" class="mono" value="000" maxlength="3">
+            <span class="hint">Casi siempre 000. Cámbialo solo si tu banco te asignó otro.</span>
+          </div>
+        </div>
+      </details>
+      <label class="check"><input type="checkbox" id="cr-remember" checked> <span>Recordar los datos de la entidad en este navegador (no se guardan los datos de los socios)</span></label>
+    </div>
+  </section>
+
+  <!-- 2. Data -->
+  <section class="panel" aria-labelledby="h-data">
+    <div class="panel-head">
+      <h2 id="h-data"><span class="n">2</span>Lista de recibos</h2>
+      <a class="btn btn-ghost btn-sm" href="/descargas/plantilla-remesa-sepa.xlsx">Descargar plantilla Excel</a>
+    </div>
+    <div class="panel-body">
+      <div class="drop" id="drop">
+        <p class="drop-title">Arrastra aquí tu Excel o CSV</p>
+        <p class="hint">Formatos .xlsx y .csv. ¿Tienes .xls u .ods? Ábrelo y usa «Guardar como» .xlsx, o copia las celdas y pégalas.</p>
+        <div class="toolbar" style="justify-content:center">
+          <label class="btn btn-primary" for="file">Elegir archivo</label>
+          <input type="file" id="file" accept=".xlsx,.csv,.txt,text/csv,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden>
+          <button type="button" class="btn btn-secondary" id="btn-paste">Pegar desde Excel</button>
+          <button type="button" class="btn btn-ghost" id="btn-sample">Probar con datos de ejemplo</button>
+        </div>
+      </div>
+      <div class="field" id="paste-box" hidden>
+        <label for="paste">Pega aquí las celdas copiadas (incluye la fila de títulos)</label>
+        <textarea id="paste" rows="6" placeholder="Nombre&#9;IBAN&#9;Cuota"></textarea>
+        <div class="toolbar"><button type="button" class="btn btn-primary btn-sm" id="btn-paste-use">Usar estos datos</button></div>
+      </div>
+      <div id="file-info" class="alert alert-info" hidden></div>
+      <div id="sheet-picker" class="toolbar" hidden>
+        <div class="field"><label for="sheet">Hoja</label><select id="sheet"></select></div>
+        <div class="field"><label for="header-row">Fila de títulos</label><input type="number" id="header-row" min="1" value="1" style="width:7em"></div>
+      </div>
+      <div id="mapping-wrap" hidden>
+        <p class="label" style="margin-bottom:10px">Columnas detectadas <span class="hint">· cambia cualquier columna que no sea correcta</span></p>
+        <div class="mapping" id="mapping"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Collection settings -->
+  <section class="panel" aria-labelledby="h-settings">
+    <div class="panel-head"><h2 id="h-settings"><span class="n">3</span>Datos del cobro</h2></div>
+    <div class="panel-body">
+      <div class="grid-3">
+        <div class="field">
+          <label for="col-date">Fecha de cobro</label>
+          <input type="date" id="col-date">
+          <span class="hint" id="col-date-status"></span>
+        </div>
+        <div class="field">
+          <label for="concept">Concepto del recibo</label>
+          <input type="text" id="concept" maxlength="140" placeholder="Cuota octubre 2026">
+          <span class="hint">Lo verá el socio en su banco. Si tu Excel tiene columna de concepto, se usa esa.</span>
+        </div>
+        <div class="field">
+          <label for="def-amount">Importe por defecto (€)</label>
+          <input type="text" id="def-amount" inputmode="decimal" placeholder="Solo si falta en el Excel">
+        </div>
+        <div class="field">
+          <label for="def-mdate">Fecha de firma por defecto</label>
+          <input type="date" id="def-mdate">
+          <span class="hint">Para filas sin fecha de mandato. Domiciliaciones anteriores a SEPA: 31/10/2009.</span>
+        </div>
+        <div class="field">
+          <span class="label" id="lbl-seq">Tipo de adeudo por defecto</span>
+          <div class="seg" role="radiogroup" aria-labelledby="lbl-seq">
+            <label><input type="radio" name="def-seq" value="RCUR" checked><span>Recurrente</span></label>
+            <label><input type="radio" name="def-seq" value="FRST"><span>Primero</span></label>
+            <label><input type="radio" name="def-seq" value="OOFF"><span>Único</span></label>
+          </div>
+          <span class="hint">Desde 2016 el primer cobro puede ir como recurrente. Lo normal es «Recurrente».</span>
+        </div>
+      </div>
+      <details class="advanced">
+        <summary>Opciones avanzadas (versión, esquema, BIC, direcciones)</summary>
+        <div class="grid-3">
+          <div class="field">
+            <label for="version">Versión del fichero</label>
+            <select id="version">
+              <option value="02">pain.008.001.02 (versión 2009)</option>
+              <option value="08">pain.008.001.08 (versión 2019)</option>
+            </select>
+            <span class="hint">Si tu banco rechaza el fichero por formato, prueba la otra versión. Para incluir direcciones en formato estructurado, usa la 2019.</span>
+          </div>
+          <div class="field">
+            <label for="scheme">Esquema</label>
+            <select id="scheme">
+              <option value="CORE">CORE (particulares, lo habitual)</option>
+              <option value="B2B">B2B (solo empresas con mandato B2B · Cuaderno 19.44)</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="mref-prefix">Prefijo para referencias generadas</label>
+            <input type="text" id="mref-prefix" class="mono" placeholder="Ej.: SOCIO-" maxlength="12">
+            <span class="hint">Si no tienes columna de referencia de mandato, se usa este prefijo + nº de socio (o NIF).</span>
+          </div>
+        </div>
+        <div style="display:grid;gap:10px;margin-top:14px">
+          <label class="check"><input type="checkbox" id="batch" checked> <span>Apunte único en tu cuenta por el total de la remesa (BatchBooking)</span></label>
+          <label class="check"><input type="checkbox" id="inc-bic"> <span>Incluir el BIC del banco de cada socio (solo si tu banco lo pide)</span></label>
+          <label class="check"><input type="checkbox" id="inc-addr"> <span>Incluir la dirección de los socios (formato estructurado; solo si tu Excel tiene población)</span></label>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <!-- 4. Review -->
+  <section class="panel" aria-labelledby="h-review">
+    <div class="panel-head">
+      <h2 id="h-review"><span class="n">4</span>Revisión y descarga</h2>
+    </div>
+    <div class="panel-body">
+      <div id="review-empty" class="muted">Cuando cargues la lista, aquí verás cada recibo con sus comprobaciones. ¿Sin Excel a mano? Pulsa «Probar con datos de ejemplo».</div>
+      <div id="review" hidden>
+        <div class="summary-bar" id="summary"></div>
+        <div id="global-alerts" style="display:grid;gap:10px"></div>
+        <div class="toolbar" style="justify-content:space-between">
+          <div class="filters" role="group" aria-label="Filtrar recibos">
+            <button type="button" data-filter="all" aria-pressed="true">Todos</button>
+            <button type="button" data-filter="bad" aria-pressed="false">Con errores</button>
+            <button type="button" data-filter="warn" aria-pressed="false">Con avisos</button>
+            <button type="button" data-filter="ok" aria-pressed="false">Correctos</button>
+          </div>
+          <div class="toolbar">
+            <button type="button" class="btn btn-secondary" id="btn-report">Informe de errores (CSV)</button>
+            <button type="button" class="btn btn-secondary" id="btn-mandates">Mandatos para firmar</button>
+            <button type="button" class="btn btn-primary btn-lg" id="btn-xml">Descargar fichero XML</button>
+          </div>
+        </div>
+        <div class="table-wrap table-scroll">
+          <table class="tbl" id="review-table">
+            <thead><tr><th>Fila</th><th>Estado</th><th>Titular</th><th>IBAN</th><th class="amount">Importe</th><th>Mandato</th><th>Firma</th><th>Tipo</th><th>Concepto y avisos</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <p class="hint" id="table-note"></p>
+        <details class="advanced" id="xml-view" hidden>
+          <summary>Ver el contenido del fichero generado</summary>
+          <div style="display:grid;gap:10px">
+            <div class="toolbar"><button type="button" class="btn btn-secondary btn-sm" id="btn-copy-xml">Copiar XML</button><span class="hint">Si la descarga no empezó, copia el texto y guárdalo como <code>remesa.xml</code>.</span></div>
+            <textarea id="xml-text" rows="14" readonly aria-label="Contenido del fichero XML"></textarea>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <div class="alert alert-info">
+    <b>Después de descargar</b>
+    <span>Entra en la banca online de tu entidad, busca «Ficheros», «Remesas» o «Envío de ficheros» y sube el XML como adeudos directos SEPA (Cuaderno 19.14 / norma 19). Hazlo al menos 2 o 3 días hábiles antes de la fecha de cobro. <a href="/guias/remesa-sepa-desde-excel/">Guía paso a paso</a>.</span>
+  </div>
+</div>
+
+<dialog id="gate" aria-labelledby="gate-title">
+  <div class="dialog-body">
+    <button type="button" class="btn btn-ghost btn-sm dialog-close" data-close>Cerrar</button>
+    <h2 id="gate-title" style="font-size:1.5rem">Tu remesa está lista: <span id="gate-count"></span> recibos</h2>
+    <p class="muted" id="gate-text">La versión gratuita genera ficheros de hasta 25 recibos. Para descargar esta remesa completa, elige un plan. Pagas una vez y recibes tu clave por email al momento.</p>
+    <div class="pricing" id="gate-plans"></div>
+    <div class="field">
+      <label for="gate-key">¿Ya tienes una clave?</label>
+      <div class="toolbar" style="flex-wrap:nowrap"><input type="text" id="gate-key" class="mono" placeholder="Pega aquí tu clave"><button type="button" class="btn btn-primary" id="gate-activate">Activar</button></div>
+      <span class="hint" id="gate-msg" role="status"></span>
+    </div>
+  </div>
+</dialog>
+
+<div id="print-area" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>CuotaSEPA</h4>
+      <ul>
+        <li><a href="/generador/">Generador de remesas SEPA</a></li>
+        <li><a href="/precios/">Precios</a></li>
+        <li><a href="/activar/">Activar clave Pro</a></li>
+        <li><a href="/descargas/plantilla-remesa-sepa.xlsx">Plantilla Excel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Herramientas gratis</h4>
+      <ul>
+        <li><a href="/herramientas/validar-remesa-sepa/">Validar remesa XML</a></li>
+        <li><a href="/herramientas/identificador-acreedor/">Identificador de acreedor</a></li>
+        <li><a href="/herramientas/validar-iban/">Validar IBAN y BIC</a></li>
+        <li><a href="/herramientas/mandato-sepa/">Mandato SEPA para imprimir</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="/guias/remesa-sepa-desde-excel/">Remesa SEPA desde Excel</a></li>
+        <li><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Direcciones estructuradas (15/11/2026)</a></li>
+        <li><a href="/guias/frst-rcur-ooff-fnal/">FRST, RCUR, OOFF y FNAL</a></li>
+        <li><a href="/guias/codigos-devolucion-recibos-sepa/">Códigos de devolución</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/aviso-legal/">Aviso legal</a></li>
+        <li><a href="/legal/privacidad/">Privacidad</a></li>
+        <li><a href="/legal/condiciones/">Condiciones de uso</a></li>
+        <li><span class="muted">Contacto: </span><a href="mailto:dgayosoberlanga@gmail.com">dgayosoberlanga@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="footnote">CuotaSEPA genera ficheros en tu navegador: los IBAN y datos de tus socios no se envían a ningún servidor. No somos una entidad financiera ni intervenimos en los cobros; el fichero lo presentas tú en tu banco. Comprueba siempre las condiciones de tu entidad.</p>
+  </div>
+</footer>
+<script src="/assets/vendor/read-excel-file.min.js"></script>
+<script type="module" src="/assets/js/app.js?v=e278264d"></script>
+
+</body>
+</html>

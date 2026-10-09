@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Códigos de devolución de recibos SEPA (AM04, MD01, AC04, MS02…) · CuotaSEPA</title>
+<meta name="description" content="Qué significa cada código de devolución o rechazo de un adeudo directo SEPA y qué hacer: AM04 fondos insuficientes, MD01 sin mandato, AC04 cuenta cancelada, MS02 rechazo del deudor, MD06 reembolso y más.">
+<link rel="canonical" href="https://dgayosoberlanga-ui.github.io/guias/codigos-devolucion-recibos-sepa/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="CuotaSEPA">
+<meta property="og:title" content="Códigos de devolución de recibos SEPA (AM04, MD01, AC04, MS02…) · CuotaSEPA">
+<meta property="og:description" content="Qué significa cada código de devolución o rechazo de un adeudo directo SEPA y qué hacer: AM04 fondos insuficientes, MD01 sin mandato, AC04 cuenta cancelada, MS02 rechazo del deudor, MD06 reembolso y más.">
+<meta property="og:url" content="https://dgayosoberlanga-ui.github.io/guias/codigos-devolucion-recibos-sepa/">
+<meta property="og:image" content="https://dgayosoberlanga-ui.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2340c2">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=e278264d">
+
+
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="deadline" role="note"><div class="wrap"><span><b>Aplazado:</b> el EPC retrasa sin fecha el fin de las direcciones no estructuradas previsto para el 15/11/2026.</span><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Qué significa para tus remesas →</a></div></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="CuotaSEPA, inicio">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="4" fill="var(--accent)"/><g fill="var(--sheet)"><circle cx="9" cy="9" r="1.3"/><circle cx="9" cy="14" r="1.3"/><circle cx="9" cy="19" r="1.3"/><circle cx="9" cy="24" r="1.3"/></g><path d="M14 16.5l3.2 3.2L24 12.5" stroke="var(--sheet)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Cuota<b>SEPA</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/herramientas/" >Herramientas gratis</a>
+      <a href="/guias/" aria-current="page">Guías</a>
+      <a href="/precios/" >Precios</a>
+      <a class="btn btn-primary btn-sm" href="/generador/" >Abrir generador</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article class="wrap">
+  <header class="article-head">
+    <p class="crumbs"><a href="/guias/">Guías</a> / Códigos de devolución</p>
+    <h1 style="font-size:var(--step-3)">Códigos de devolución de recibos SEPA</h1>
+    <p class="lead">Cuando un recibo domiciliado no se cobra, el banco te informa con un código de cuatro caracteres. Aquí tienes qué significa cada uno y qué conviene hacer.</p>
+  </header>
+  <div class="prose">
+    <h2>Rechazo, devolución y reembolso</h2>
+    <ul>
+      <li><b>Rechazo:</b> el recibo no llega a cargarse (por ejemplo, el fichero o el IBAN tienen un error). No hay coste para el socio.</li>
+      <li><b>Devolución:</b> el banco del socio devuelve el recibo después del cargo, normalmente en los 5 días hábiles siguientes (falta de fondos, cuenta cerrada…).</li>
+      <li><b>Reembolso:</b> el socio pide a su banco que le devuelva el dinero. En el esquema CORE puede hacerlo sin dar motivos durante 8 semanas, y hasta 13 meses si el cargo no estaba autorizado (sin mandato). En el esquema B2B no hay derecho a reembolso.</li>
+    </ul>
+    <h2>Códigos más habituales</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Código</th><th>Significado</th><th>Qué hacer</th></tr></thead>
+      <tbody>
+        <tr><td><code>AM04</code></td><td>Fondos insuficientes</td><td>Avisa al socio y vuelve a cobrar más adelante, o pídele que pague por otra vía. Evita reintentos automáticos seguidos.</td></tr>
+        <tr><td><code>MS02</code></td><td>El deudor rechaza el cobro (sin motivo indicado)</td><td>Habla con el socio: puede ser una baja no comunicada o un desacuerdo con el importe.</td></tr>
+        <tr><td><code>MD06</code></td><td>Reembolso solicitado por el deudor (dentro de 8 semanas)</td><td>El socio ha pedido la devolución. Contacta con él; tienes derecho a reclamar la deuda por otra vía.</td></tr>
+        <tr><td><code>MD01</code></td><td>No existe mandato o no está autorizado</td><td>Comprueba que tienes el mandato firmado y que la referencia y tu identificador de acreedor son los de siempre.</td></tr>
+        <tr><td><code>MD02</code></td><td>Faltan datos del mandato o son incorrectos</td><td>Revisa la referencia y la fecha de firma del mandato en el fichero.</td></tr>
+        <tr><td><code>MD07</code></td><td>El titular ha fallecido</td><td>Da de baja la domiciliación y contacta con la familia o la persona responsable.</td></tr>
+        <tr><td><code>AC01</code></td><td>Número de cuenta incorrecto</td><td>Pide de nuevo el IBAN al socio. Valida los IBAN antes de cada remesa.</td></tr>
+        <tr><td><code>AC04</code></td><td>Cuenta cancelada</td><td>Pide al socio su nueva cuenta (y, si cambia de banco, un mandato nuevo).</td></tr>
+        <tr><td><code>AC06</code></td><td>Cuenta bloqueada, o bloqueada para adeudos por el titular</td><td>Contacta con el socio: puede haber bloqueado tus recibos en su banco.</td></tr>
+        <tr><td><code>AC13</code></td><td>La cuenta es de un consumidor</td><td>Solo en B2B: a un particular no se le puede cobrar con mandato B2B. Usa el esquema CORE.</td></tr>
+        <tr><td><code>AG01</code></td><td>La cuenta no admite adeudos</td><td>Algunas cuentas (de ahorro, de pago) no aceptan recibos. Pide otra cuenta.</td></tr>
+        <tr><td><code>AM05</code></td><td>Recibo duplicado</td><td>Revisa si enviaste el mismo recibo dos veces.</td></tr>
+        <tr><td><code>BE05</code></td><td>Identificador de acreedor incorrecto</td><td>Comprueba tu identificador con el banco; afecta a toda la remesa.</td></tr>
+        <tr><td><code>FF01</code>, <code>AG02</code></td><td>Formato de fichero o código de operación no válido</td><td>El fichero tiene un error de formato. Pásalo por el <a href="/herramientas/validar-remesa-sepa/">validador</a> o regenéralo.</td></tr>
+        <tr><td><code>RC01</code></td><td>BIC incorrecto</td><td>Quita el BIC del deudor (no es obligatorio en el EEE) o corrígelo.</td></tr>
+        <tr><td><code>RR01</code>–<code>RR04</code></td><td>Motivos regulatorios (faltan cuenta, nombre o dirección)</td><td>Suelen aparecer en cobros fuera del EEE: incluye la dirección completa del deudor.</td></tr>
+        <tr><td><code>SL01</code></td><td>Servicio específico del banco del deudor</td><td>El socio tiene una lista de acreedores permitidos o bloqueados en su banco.</td></tr>
+        <tr><td><code>MS03</code></td><td>Motivo no especificado</td><td>Pregunta a tu banco y al socio.</td></tr>
+        <tr><td><code>CNOR</code>, <code>DNOR</code></td><td>Banco del acreedor o del deudor no accesible en el sistema</td><td>Poco habitual; consúltalo con tu banco.</td></tr>
+      </tbody>
+    </table></div>
+    <h2>Cómo reducir devoluciones</h2>
+    <ul>
+      <li>Valida todos los IBAN antes de cada remesa.</li>
+      <li>Avisa a los socios con antelación del importe y la fecha (al menos 14 días naturales, salvo otro acuerdo).</li>
+      <li>Usa un concepto claro: «Cuota octubre 2026 – Club X» genera menos rechazos que un código interno.</li>
+      <li>Mantén siempre la misma referencia de mandato y el mismo identificador de acreedor.</li>
+      <li>Da de baja a tiempo a quien deja la entidad.</li>
+    </ul>
+    <p class="small muted">Los códigos son los motivos estándar ISO 20022 que usan los esquemas SEPA. Tu banco puede mostrarlos con una descripción propia o con códigos internos equivalentes.</p>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>CuotaSEPA</h4>
+      <ul>
+        <li><a href="/generador/">Generador de remesas SEPA</a></li>
+        <li><a href="/precios/">Precios</a></li>
+        <li><a href="/activar/">Activar clave Pro</a></li>
+        <li><a href="/descargas/plantilla-remesa-sepa.xlsx">Plantilla Excel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Herramientas gratis</h4>
+      <ul>
+        <li><a href="/herramientas/validar-remesa-sepa/">Validar remesa XML</a></li>
+        <li><a href="/herramientas/identificador-acreedor/">Identificador de acreedor</a></li>
+        <li><a href="/herramientas/validar-iban/">Validar IBAN y BIC</a></li>
+        <li><a href="/herramientas/mandato-sepa/">Mandato SEPA para imprimir</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="/guias/remesa-sepa-desde-excel/">Remesa SEPA desde Excel</a></li>
+        <li><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Direcciones estructuradas (15/11/2026)</a></li>
+        <li><a href="/guias/frst-rcur-ooff-fnal/">FRST, RCUR, OOFF y FNAL</a></li>
+        <li><a href="/guias/codigos-devolucion-recibos-sepa/">Códigos de devolución</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/aviso-legal/">Aviso legal</a></li>
+        <li><a href="/legal/privacidad/">Privacidad</a></li>
+        <li><a href="/legal/condiciones/">Condiciones de uso</a></li>
+        <li><span class="muted">Contacto: </span><a href="mailto:dgayosoberlanga@gmail.com">dgayosoberlanga@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="footnote">CuotaSEPA genera ficheros en tu navegador: los IBAN y datos de tus socios no se envían a ningún servidor. No somos una entidad financiera ni intervenimos en los cobros; el fichero lo presentas tú en tu banco. Comprueba siempre las condiciones de tu entidad.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

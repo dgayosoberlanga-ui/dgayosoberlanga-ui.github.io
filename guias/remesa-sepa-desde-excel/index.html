@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cómo hacer una remesa SEPA de recibos desde Excel (paso a paso) · CuotaSEPA</title>
+<meta name="description" content="Guía práctica para cobrar cuotas por domiciliación: qué necesitas del banco, cómo preparar el Excel, generar el fichero XML (Cuaderno 19.14), plazos de presentación y qué hacer con las devoluciones.">
+<link rel="canonical" href="https://dgayosoberlanga-ui.github.io/guias/remesa-sepa-desde-excel/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="CuotaSEPA">
+<meta property="og:title" content="Cómo hacer una remesa SEPA de recibos desde Excel (paso a paso) · CuotaSEPA">
+<meta property="og:description" content="Guía práctica para cobrar cuotas por domiciliación: qué necesitas del banco, cómo preparar el Excel, generar el fichero XML (Cuaderno 19.14), plazos de presentación y qué hacer con las devoluciones.">
+<meta property="og:url" content="https://dgayosoberlanga-ui.github.io/guias/remesa-sepa-desde-excel/">
+<meta property="og:image" content="https://dgayosoberlanga-ui.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2340c2">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=e278264d">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "HowTo", "name": "Cómo hacer una remesa SEPA de recibos desde Excel", "inLanguage": "es", "step": [{"@type": "HowToStep", "name": "Contrata la emisión de adeudos y obtén tu identificador de acreedor", "text": "Pide a tu banco el servicio de presentación de adeudos directos SEPA. Te confirmará tu identificador de acreedor."}, {"@type": "HowToStep", "name": "Recoge los mandatos firmados", "text": "Cada socio firma una orden de domiciliación con una referencia única que guardas."}, {"@type": "HowToStep", "name": "Prepara el Excel", "text": "Una fila por recibo con titular, IBAN, importe, referencia y fecha de firma del mandato."}, {"@type": "HowToStep", "name": "Genera el fichero XML", "text": "Convierte el Excel al formato ISO 20022 pain.008 con un generador y revisa los errores."}, {"@type": "HowToStep", "name": "Súbelo a la banca online", "text": "En la sección de ficheros o remesas, con al menos 2 o 3 días hábiles de antelación."}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="deadline" role="note"><div class="wrap"><span><b>Aplazado:</b> el EPC retrasa sin fecha el fin de las direcciones no estructuradas previsto para el 15/11/2026.</span><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Qué significa para tus remesas →</a></div></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="CuotaSEPA, inicio">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="4" fill="var(--accent)"/><g fill="var(--sheet)"><circle cx="9" cy="9" r="1.3"/><circle cx="9" cy="14" r="1.3"/><circle cx="9" cy="19" r="1.3"/><circle cx="9" cy="24" r="1.3"/></g><path d="M14 16.5l3.2 3.2L24 12.5" stroke="var(--sheet)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Cuota<b>SEPA</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/herramientas/" >Herramientas gratis</a>
+      <a href="/guias/" aria-current="page">Guías</a>
+      <a href="/precios/" >Precios</a>
+      <a class="btn btn-primary btn-sm" href="/generador/" >Abrir generador</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<article class="wrap">
+  <header class="article-head">
+    <p class="crumbs"><a href="/guias/">Guías</a> / Remesa SEPA desde Excel</p>
+    <h1 style="font-size:var(--step-3)">Cómo hacer una remesa SEPA de recibos desde Excel</h1>
+    <p class="lead">Si cobras cuotas a socios, alumnos o clientes por domiciliación bancaria, cada mes (o cada trimestre) tienes que entregar al banco un fichero con todos los recibos. Esta guía explica el proceso completo, de la hoja de cálculo al cobro.</p>
+  </header>
+  <div class="prose">
+    <h2>1. Lo que necesitas antes de empezar</h2>
+    <ul>
+      <li><b>Contrato de emisión de adeudos con tu banco.</b> Se suele llamar «servicio de remesas», «emisión de recibos» o «adeudos directos SEPA». Cada banco tiene sus comisiones por recibo y por devolución; compáralas.</li>
+      <li><b>Identificador de acreedor.</b> Te lo confirma el banco. En España tiene la forma <code>ES</code> + 2 dígitos + sufijo + NIF de la entidad. Puedes comprobarlo con nuestra <a href="/herramientas/identificador-acreedor/">calculadora</a>.</li>
+      <li><b>Mandatos firmados.</b> Cada socio debe haber firmado una orden de domiciliación con una referencia única. Si aún no los tienes, usa el <a href="/herramientas/mandato-sepa/">modelo de mandato</a>.</li>
+      <li><b>Acceso a la banca online de empresa</b> con permiso para enviar ficheros.</li>
+    </ul>
+
+    <h2>2. Prepara la hoja de cálculo</h2>
+    <p>Una fila por recibo y una fila de títulos arriba. Estas son las columnas que necesita el fichero:</p>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Columna</th><th>Obligatoria</th><th>Ejemplo</th><th>Notas</th></tr></thead>
+      <tbody>
+        <tr><td>Titular de la cuenta</td><td>Sí</td><td>Lucía Fernández Ruiz</td><td>El titular de la cuenta, no necesariamente el socio (en un menor, el padre o la madre).</td></tr>
+        <tr><td>IBAN</td><td>Sí</td><td>ES91 2100 0418 4502 0005 1332</td><td>Con o sin espacios. Las cuentas antiguas de 20 dígitos se pueden convertir.</td></tr>
+        <tr><td>Importe</td><td>Sí</td><td>35,00</td><td>En euros, con coma o punto decimal.</td></tr>
+        <tr><td>Referencia del mandato</td><td>Sí</td><td>SOCIO-0001</td><td>Única por socio y siempre la misma. Máximo 35 caracteres.</td></tr>
+        <tr><td>Fecha de firma del mandato</td><td>Sí</td><td>15/09/2023</td><td>Para domiciliaciones anteriores a SEPA se usa el 31/10/2009. <a href="/guias/fecha-firma-mandato-sepa/">Ver por qué</a>.</td></tr>
+        <tr><td>Concepto</td><td>Recomendable</td><td>Cuota octubre 2026</td><td>Hasta 140 caracteres. Es lo que verá el socio en su extracto.</td></tr>
+        <tr><td>Tipo de adeudo</td><td>No</td><td>RCUR</td><td>Si no lo pones, se usa recurrente. <a href="/guias/frst-rcur-ooff-fnal/">Cuándo usar otro</a>.</td></tr>
+      </tbody>
+    </table></div>
+    <p>Puedes descargar nuestra <a href="/descargas/plantilla-remesa-sepa.xlsx">plantilla de Excel</a> con estas columnas, o usar tu propia hoja: el generador reconoce títulos como «Nombre», «Apellidos», «Cuenta», «Cuota» o «Nº socio».</p>
+
+    <h2>3. Genera el fichero XML</h2>
+    <p>El banco no acepta el Excel directamente: necesita un fichero XML con el formato europeo ISO 20022 <code>pain.008</code>, que en España se conoce como Cuaderno 19.14 o «norma 19 SEPA» (19.44 para el esquema B2B entre empresas). Con el <a href="/generador/">generador de CuotaSEPA</a>:</p>
+    <ol>
+      <li>Rellena una vez los datos de tu entidad: nombre, identificador de acreedor e IBAN donde cobras.</li>
+      <li>Arrastra tu Excel. Revisa que cada columna se ha detectado bien.</li>
+      <li>Elige la fecha de cobro y el concepto.</li>
+      <li>Revisa los errores y avisos. Los recibos con errores se quedan fuera del fichero y aparecen en el informe para que los corrijas.</li>
+      <li>Descarga el XML.</li>
+    </ol>
+    <p>Todo se hace en tu navegador: los datos de tus socios no se envían a ningún servidor.</p>
+
+    <h2>4. Súbelo al banco con tiempo</h2>
+    <p>En la banca online busca una sección llamada «Ficheros», «Envío de ficheros», «Remesas» o «Cobros». Elige el tipo «Adeudos directos SEPA» (a veces «Norma 19» o «Cuaderno 19.14 XML») y sube el fichero. Algunos bancos piden firmar el envío con una clave adicional.</p>
+    <p>En cuanto a los plazos, el estándar SEPA permite que el banco del acreedor presente los adeudos hasta un día hábil antes del cargo, pero cada banco fija su hora límite para recibir ficheros de clientes. Como regla práctica, envía la remesa al menos dos o tres días hábiles antes de la fecha de cobro y evita fechas que caigan en fin de semana o en festivo TARGET2 (1 de enero, Viernes Santo, Lunes de Pascua, 1 de mayo, 25 y 26 de diciembre).</p>
+
+    <h2>5. Avisa a tus socios</h2>
+    <p>Las normas SEPA obligan a informar al deudor del importe y la fecha del cargo con al menos 14 días naturales de antelación, salvo que hayáis acordado otro plazo (por ejemplo, en los estatutos o al darse de alta). Un calendario anual de cuotas enviado al empezar la temporada suele bastar.</p>
+
+    <h2>6. Después del cobro: devoluciones</h2>
+    <p>No todos los recibos se cobrarán. El banco de un socio puede devolver un recibo durante los 5 días hábiles siguientes (por ejemplo, por falta de fondos) y, en el esquema CORE, el socio puede pedir el reembolso sin dar explicaciones durante 8 semanas, o hasta 13 meses si no existía mandato. Cada devolución llega con un código; consulta qué significa en la <a href="/guias/codigos-devolucion-recibos-sepa/">guía de códigos de devolución</a>.</p>
+
+    <h2>Errores frecuentes</h2>
+    <ul>
+      <li><b>IBAN con un dígito mal copiado.</b> El generador lo detecta con los dígitos de control.</li>
+      <li><b>Cambiar la referencia del mandato de un mes a otro.</b> Para el banco del socio es otro mandato distinto y puede devolverlo.</li>
+      <li><b>Tildes, eñes y símbolos.</b> El estándar SEPA solo admite un juego de caracteres básico. El generador los convierte (Peña → Pena).</li>
+      <li><b>Fecha de cobro en festivo o demasiado cercana.</b> El banco la moverá o rechazará la remesa.</li>
+      <li><b>Sumas de control que no cuadran</b> en ficheros hechos a mano o con macros antiguas. Compruébalo con el <a href="/herramientas/validar-remesa-sepa/">validador</a>.</li>
+    </ul>
+    <div class="cta-box"><b>Hazlo ahora con tu Excel</b><p class="muted">Gratis hasta 25 recibos, sin registro.</p><a class="btn btn-primary" href="/generador/">Abrir el generador</a></div>
+  </div>
+</article>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>CuotaSEPA</h4>
+      <ul>
+        <li><a href="/generador/">Generador de remesas SEPA</a></li>
+        <li><a href="/precios/">Precios</a></li>
+        <li><a href="/activar/">Activar clave Pro</a></li>
+        <li><a href="/descargas/plantilla-remesa-sepa.xlsx">Plantilla Excel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Herramientas gratis</h4>
+      <ul>
+        <li><a href="/herramientas/validar-remesa-sepa/">Validar remesa XML</a></li>
+        <li><a href="/herramientas/identificador-acreedor/">Identificador de acreedor</a></li>
+        <li><a href="/herramientas/validar-iban/">Validar IBAN y BIC</a></li>
+        <li><a href="/herramientas/mandato-sepa/">Mandato SEPA para imprimir</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="/guias/remesa-sepa-desde-excel/">Remesa SEPA desde Excel</a></li>
+        <li><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Direcciones estructuradas (15/11/2026)</a></li>
+        <li><a href="/guias/frst-rcur-ooff-fnal/">FRST, RCUR, OOFF y FNAL</a></li>
+        <li><a href="/guias/codigos-devolucion-recibos-sepa/">Códigos de devolución</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/aviso-legal/">Aviso legal</a></li>
+        <li><a href="/legal/privacidad/">Privacidad</a></li>
+        <li><a href="/legal/condiciones/">Condiciones de uso</a></li>
+        <li><span class="muted">Contacto: </span><a href="mailto:dgayosoberlanga@gmail.com">dgayosoberlanga@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="footnote">CuotaSEPA genera ficheros en tu navegador: los IBAN y datos de tus socios no se envían a ningún servidor. No somos una entidad financiera ni intervenimos en los cobros; el fichero lo presentas tú en tu banco. Comprueba siempre las condiciones de tu entidad.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>CuotaSEPA · Remesas SEPA de recibos desde Excel, sin subir tus datos</title>
+<meta name="description" content="Genera la remesa de recibos domiciliados (adeudos directos SEPA, XML Cuaderno 19.14) desde tu Excel de socios en dos minutos. Valida IBAN, mandatos y fechas. Tus datos no salen de tu ordenador. Gratis hasta 25 recibos.">
+<link rel="canonical" href="https://dgayosoberlanga-ui.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="CuotaSEPA">
+<meta property="og:title" content="CuotaSEPA · Remesas SEPA de recibos desde Excel, sin subir tus datos">
+<meta property="og:description" content="Genera la remesa de recibos domiciliados (adeudos directos SEPA, XML Cuaderno 19.14) desde tu Excel de socios en dos minutos. Valida IBAN, mandatos y fechas. Tus datos no salen de tu ordenador. Gratis hasta 25 recibos.">
+<meta property="og:url" content="https://dgayosoberlanga-ui.github.io/">
+<meta property="og:image" content="https://dgayosoberlanga-ui.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2340c2">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=e278264d">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "CuotaSEPA", "url": "https://dgayosoberlanga-ui.github.io/", "inLanguage": "es"}</script>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué es una remesa SEPA de recibos?", "acceptedAnswer": {"@type": "Answer", "text": "Es un fichero XML (formato ISO 20022 pain.008, conocido en España como Cuaderno 19.14 o norma 19) con todos los recibos que quieres cobrar por domiciliación en una fecha. Lo subes a la banca online de tu entidad y el banco carga cada recibo en la cuenta de cada socio o cliente."}}, {"@type": "Question", "name": "¿Mi banco aceptará el fichero?", "acceptedAnswer": {"@type": "Answer", "text": "CuotaSEPA genera el formato estándar ISO 20022 pain.008 en sus versiones 2009 (pain.008.001.02) y 2019 (pain.008.001.08), con estructura comprobada contra el esquema oficial. Es el formato que piden los bancos españoles para adeudos directos SEPA. Necesitas tener contratado con tu banco el servicio de emisión de adeudos y tu identificador de acreedor."}}, {"@type": "Question", "name": "¿Dónde se guardan los datos de mis socios?", "acceptedAnswer": {"@type": "Answer", "text": "En ningún servidor. El Excel se lee y el fichero se genera dentro de tu navegador. Los IBAN y nombres de tus socios no se envían a CuotaSEPA ni a terceros."}}, {"@type": "Question", "name": "¿Cuánto cuesta?", "acceptedAnswer": {"@type": "Answer", "text": "Gratis para remesas de hasta 25 recibos. Para remesas más grandes: Pase 30 días por 15 euros (pago único), Pro anual por 69 euros al año o Pro mensual por 9 euros al mes."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="deadline" role="note"><div class="wrap"><span><b>Aplazado:</b> el EPC retrasa sin fecha el fin de las direcciones no estructuradas previsto para el 15/11/2026.</span><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Qué significa para tus remesas →</a></div></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="CuotaSEPA, inicio">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="4" fill="var(--accent)"/><g fill="var(--sheet)"><circle cx="9" cy="9" r="1.3"/><circle cx="9" cy="14" r="1.3"/><circle cx="9" cy="19" r="1.3"/><circle cx="9" cy="24" r="1.3"/></g><path d="M14 16.5l3.2 3.2L24 12.5" stroke="var(--sheet)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Cuota<b>SEPA</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/herramientas/" >Herramientas gratis</a>
+      <a href="/guias/" >Guías</a>
+      <a href="/precios/" >Precios</a>
+      <a class="btn btn-primary btn-sm" href="/generador/" >Abrir generador</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Para clubes, AMPAs, asociaciones y academias</p>
+      <h1>Del Excel de socios al fichero del banco, sin subir un solo IBAN.</h1>
+      <p class="lead">CuotaSEPA convierte tu lista en la remesa de recibos SEPA en el formato estándar que piden los bancos (XML, Cuaderno 19.14) y la revisa antes de enviarla, para evitar rechazos y devoluciones por errores de formato.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary btn-lg" href="/generador/">Generar mi remesa gratis</a>
+        <a class="btn btn-secondary btn-lg" href="/herramientas/validar-remesa-sepa/">Validar un XML que ya tengo</a>
+      </div>
+      <div class="trust"><span>Gratis hasta 25 recibos</span><span>Sin registro</span><span>Los datos no salen de tu ordenador</span></div>
+    </div>
+    <div class="stub receipt" aria-label="Ejemplo de remesa generada">
+      <div class="receipt-row"><span class="eyebrow">Remesa · adeudos directos SEPA</span><span class="eyebrow">Ejemplo</span></div>
+      <div class="receipt-row"><span class="muted">Fecha de cobro</span><span class="num"><b>20/10/2026</b> · día hábil</span></div>
+      <div class="receipt-row"><span class="muted">Recibos</span><span class="num"><b>87</b></span></div>
+      <div class="receipt-row"><span class="muted">Importe total</span><span class="big"><span class="mark">2.610,00 €</span></span></div>
+      <div class="receipt-row"><span class="muted">Cuenta de cobro</span><span class="mono small">ES66 2100 •••• •••• 7891</span></div>
+      <div class="receipt-row"><span class="muted">Formato</span><span class="mono small">pain.008.001.02 · CORE · RCUR</span></div>
+      <div class="receipt-row" style="align-items:center"><span class="muted">Comprobaciones</span><span><span class="pill pill-ok">0 errores</span> <span class="stamp" style="margin-left:8px">Validado</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="background:var(--sheet);border-block:1px solid var(--rule)" id="como-funciona">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Cómo funciona</p>
+      <h2>Tres pasos, y el segundo mes solo dos.</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><h3>Sube tu Excel o pega las celdas</h3><p class="muted">Detectamos solas las columnas de titular, IBAN, importe, referencia y fecha del mandato. Si tus columnas se llaman distinto, las eliges una vez y se recuerdan.</p></div>
+      <div class="step"><h3>Revisa recibo por recibo</h3><p class="muted">Cada fila pasa más de 15 comprobaciones: IBAN y dígitos de control de la cuenta, cuentas antiguas de 20 dígitos, importes, mandatos, tildes y eñes que el banco no admite, festivos TARGET2 y recibos duplicados.</p></div>
+      <div class="step"><h3>Descarga y súbelo a tu banco</h3><p class="muted">Un XML en el formato estándar ISO 20022 que usan los bancos españoles, con una estructura comprobada contra el esquema oficial en nuestras pruebas automáticas. Tu entidad y tus opciones quedan guardadas para el mes siguiente.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Por qué CuotaSEPA</p>
+      <h2>Hecho para la persona que lleva la tesorería un martes por la noche.</h2>
+      <p class="lead">Sin programas que instalar ni cuentas que crear. Abres la página, sueltas el Excel y en dos minutos tienes el fichero.</p>
+    </div>
+    <div class="feature-list">
+      <div class="feature"><h3>Tus datos no salen de tu ordenador</h3><p class="muted">El Excel se lee y el fichero se crea en tu navegador. No recibimos ni guardamos los IBAN de tus socios, así que no hay base de datos que se pueda filtrar.</p></div>
+      <div class="feature"><h3>Los errores que el banco no te explica</h3><p class="muted">Convertimos cuentas CCC antiguas a IBAN, quitamos tildes y eñes, avisamos si el cobro cae en festivo TARGET2 o si un mandato está firmado después del cobro.</p></div>
+      <div class="feature"><h3>Formato estándar, cualquier banco</h3><p class="muted">ISO 20022 pain.008 (Cuaderno 19.14 XML) en versión 2009 o 2019, esquemas CORE y B2B, con BIC automático para bancos españoles.</p></div>
+      <div class="feature"><h3>Mandatos listos para firmar</h3><p class="muted">Genera la orden de domiciliación SEPA de cada socio con su IBAN y referencia ya rellenos, para imprimir y firmar al inicio de temporada.</p></div>
+      <div class="feature"><h3>Informe de errores en CSV</h3><p class="muted">Lo que no está bien se excluye del fichero y se lista con el motivo, para que lo corrijas en tu Excel y no se quede ningún recibo sin cobrar.</p></div>
+      <div class="feature"><h3>Precio de club, no de banco</h3><p class="muted">Gratis hasta 25 recibos. Para más, 69 € al año o un pase de 30 días si solo cobras la cuota anual.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="padding-top:0">
+  <div class="wrap" style="display:grid;gap:18px">
+    <p class="eyebrow">Pensado para quien cobra cuotas domiciliadas</p>
+    <div class="audiences">
+      <span>Clubes deportivos</span><span>AMPAs y AFAs</span><span>Asociaciones culturales y vecinales</span><span>Academias y escuelas de música</span><span>Estudios de yoga, danza y pilates</span><span>ONG y fundaciones</span><span>Colegios profesionales</span><span>Gestorías con varios clientes</span>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="background:var(--sheet);border-block:1px solid var(--rule)" id="precios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Precios</p>
+      <h2>Empieza gratis. Paga solo si tu remesa es grande.</h2>
+      <p class="lead">Todas las comprobaciones son gratis siempre. El plan de pago desbloquea ficheros de más de 25 recibos y los mandatos en lote. El IVA que corresponda se muestra al pagar.</p>
+    </div>
+    <div class="pricing">
+      <div class="plan"><span></span><div><div class="price">0 € <small>siempre</small></div><h3 style="margin-top:6px">Gratis</h3></div><p class="muted small">Remesas de hasta 25 recibos, todas las validaciones, informe de errores, herramientas gratuitas.</p><a class="btn btn-secondary" href="/generador/">Empezar</a></div>
+      <div class="plan"><span></span><div><div class="price">15 € <small>pago único</small></div><h3 style="margin-top:6px">Pase 30 días</h3></div><p class="muted small">Para quien cobra la cuota una o dos veces al año. Recibos ilimitados y mandatos en lote durante 30 días.</p><a class="btn btn-secondary" href="/precios/">Ver detalles</a></div>
+      <div class="plan is-featured"><span class="pill pill-neutral tag">Recomendado</span><div><div class="price">69 € <small>al año</small></div><h3 style="margin-top:6px">Pro anual</h3></div><p class="muted small">Para cobros mensuales o trimestrales. Recibos ilimitados y mandatos en lote. Sale a 5,75 € al mes.</p><a class="btn btn-primary" href="/precios/">Elegir Pro anual</a></div>
+      <div class="plan"><span></span><div><div class="price">9 € <small>al mes</small></div><h3 style="margin-top:6px">Pro mensual</h3></div><p class="muted small">Lo mismo que el anual, sin permanencia. Cancela cuando quieras.</p><a class="btn btn-secondary" href="/precios/">Ver detalles</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap grid-2" style="align-items:start;gap:40px">
+    <div class="section-head" style="margin:0">
+      <p class="eyebrow">Herramientas gratis</p>
+      <h2>¿Solo necesitas comprobar algo?</h2>
+      <p class="lead">Sin límites y sin registro.</p>
+    </div>
+    <div style="display:grid;gap:12px">
+      <a class="card" href="/herramientas/validar-remesa-sepa/" style="text-decoration:none;color:inherit"><h3>Validar una remesa XML</h3><p class="muted small">Abre el fichero que te devolvió el banco y te decimos qué falla, recibo por recibo.</p></a>
+      <a class="card" href="/herramientas/identificador-acreedor/" style="text-decoration:none;color:inherit"><h3>Calcular el identificador de acreedor</h3><p class="muted small">Comprueba o calcula tu ESxx000 + NIF a partir del NIF de tu entidad.</p></a>
+      <a class="card" href="/herramientas/validar-iban/" style="text-decoration:none;color:inherit"><h3>Validar IBAN en lote y obtener el BIC</h3><p class="muted small">Pega una columna de cuentas y te marcamos las erróneas. Convierte CCC a IBAN.</p></a>
+      <a class="card" href="/herramientas/mandato-sepa/" style="text-decoration:none;color:inherit"><h3>Mandato SEPA para imprimir</h3><p class="muted small">Orden de domiciliación de adeudo directo SEPA rellenable, CORE o B2B.</p></a>
+    </div>
+  </div>
+</section>
+
+<section class="block" style="background:var(--sheet);border-block:1px solid var(--rule)" id="faq">
+  <div class="wrap">
+    <div class="section-head"><p class="eyebrow">Preguntas frecuentes</p><h2>Antes de tu primera remesa</h2></div>
+    <div class="faq">
+      <details><summary>¿Qué es una remesa SEPA de recibos?</summary><p>Es un fichero XML (formato ISO 20022 pain.008, conocido en España como Cuaderno 19.14 o «norma 19») con todos los recibos que quieres cobrar por domiciliación en una fecha. Lo subes a la banca online de tu entidad y el banco carga cada recibo en la cuenta de cada socio.</p></details>
+      <details><summary>¿Mi banco aceptará el fichero?</summary><p>Generamos el formato estándar ISO 20022 pain.008 en sus versiones 2009 (pain.008.001.02) y 2019 (pain.008.001.08); nuestras pruebas automáticas comprueban su estructura contra el esquema oficial. Es el formato que piden los bancos españoles para adeudos directos SEPA (Cuaderno 19.14 para CORE y 19.44 para B2B). Cada banco puede tener reglas propias, así que la primera vez conviene enviar un fichero de prueba si tu banco lo permite.</p><p>Necesitas tener contratado con tu banco el servicio de emisión de adeudos directos y tu identificador de acreedor. La primera vez, muchos bancos permiten enviar un fichero de prueba: aprovéchalo.</p></details>
+      <details><summary>¿Dónde se guardan los datos de mis socios?</summary><p>En ningún servidor. El Excel se lee y el fichero se genera dentro de tu navegador. Solo se guardan en tu propio navegador, si quieres, los datos de tu entidad (nombre, identificador, IBAN de cobro) y qué columna es cuál, para no tener que repetirlos.</p></details>
+      <details><summary>¿Qué pasa con el 15 de noviembre de 2026 y las direcciones?</summary><p>El Consejo Europeo de Pagos (EPC) había fijado el 15/11/2026 como fecha a partir de la cual dejarían de admitirse direcciones no estructuradas en los ficheros SEPA. En septiembre de 2026 decidió aplazarla, y su guía EPC153-22 v2.2 (30/09/2026) habla ya de una fecha aún por determinar. CuotaSEPA no incluye direcciones salvo que lo pidas; si las necesitas, usa la versión 2019 del fichero, que las escribe en formato estructurado. <a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Más detalle</a>.</p></details>
+      <details><summary>¿Quién me factura y cómo cancelo?</summary><p>Los pagos los gestiona Polar.sh como vendedor final (merchant of record): te emite la factura con el IVA correspondiente. El plan mensual se cancela desde el enlace del email de compra, sin permanencia. El pase de 30 días no se renueva solo.</p></details>
+      <details><summary>¿Y si me devuelven un recibo?</summary><p>El banco te indicará un código de motivo (por ejemplo AM04, fondos insuficientes, o MD01, sin mandato). En nuestra <a href="/guias/codigos-devolucion-recibos-sepa/">guía de códigos de devolución</a> explicamos qué significa cada uno y qué hacer.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap cta-box" style="max-width:var(--maxw)">
+    <h2 style="font-size:var(--step-2)">Prueba con datos de ejemplo en 30 segundos</h2>
+    <p class="muted">Abre el generador y pulsa «Probar con datos de ejemplo». Verás cómo se marca un IBAN con un dígito cambiado y cómo se convierte una cuenta antigua de 20 dígitos.</p>
+    <a class="btn btn-primary btn-lg" href="/generador/">Abrir el generador</a>
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>CuotaSEPA</h4>
+      <ul>
+        <li><a href="/generador/">Generador de remesas SEPA</a></li>
+        <li><a href="/precios/">Precios</a></li>
+        <li><a href="/activar/">Activar clave Pro</a></li>
+        <li><a href="/descargas/plantilla-remesa-sepa.xlsx">Plantilla Excel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Herramientas gratis</h4>
+      <ul>
+        <li><a href="/herramientas/validar-remesa-sepa/">Validar remesa XML</a></li>
+        <li><a href="/herramientas/identificador-acreedor/">Identificador de acreedor</a></li>
+        <li><a href="/herramientas/validar-iban/">Validar IBAN y BIC</a></li>
+        <li><a href="/herramientas/mandato-sepa/">Mandato SEPA para imprimir</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="/guias/remesa-sepa-desde-excel/">Remesa SEPA desde Excel</a></li>
+        <li><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Direcciones estructuradas (15/11/2026)</a></li>
+        <li><a href="/guias/frst-rcur-ooff-fnal/">FRST, RCUR, OOFF y FNAL</a></li>
+        <li><a href="/guias/codigos-devolucion-recibos-sepa/">Códigos de devolución</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/aviso-legal/">Aviso legal</a></li>
+        <li><a href="/legal/privacidad/">Privacidad</a></li>
+        <li><a href="/legal/condiciones/">Condiciones de uso</a></li>
+        <li><span class="muted">Contacto: </span><a href="mailto:dgayosoberlanga@gmail.com">dgayosoberlanga@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="footnote">CuotaSEPA genera ficheros en tu navegador: los IBAN y datos de tus socios no se envían a ningún servidor. No somos una entidad financiera ni intervenimos en los cobros; el fichero lo presentas tú en tu banco. Comprueba siempre las condiciones de tu entidad.</p>
+  </div>
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mandato SEPA PDF para rellenar e imprimir (CORE y B2B) · CuotaSEPA</title>
+<meta name="description" content="Descarga el mandato SEPA en PDF para rellenar o complétalo online e imprímelo: orden de domiciliación de adeudo directo SEPA, modelos CORE y B2B, con el texto legal estándar en español. Gratis.">
+<link rel="canonical" href="https://dgayosoberlanga-ui.github.io/herramientas/mandato-sepa/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="CuotaSEPA">
+<meta property="og:title" content="Mandato SEPA PDF para rellenar e imprimir (CORE y B2B) · CuotaSEPA">
+<meta property="og:description" content="Descarga el mandato SEPA en PDF para rellenar o complétalo online e imprímelo: orden de domiciliación de adeudo directo SEPA, modelos CORE y B2B, con el texto legal estándar en español. Gratis.">
+<meta property="og:url" content="https://dgayosoberlanga-ui.github.io/herramientas/mandato-sepa/">
+<meta property="og:image" content="https://dgayosoberlanga-ui.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2340c2">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=e278264d">
+
+
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="deadline" role="note"><div class="wrap"><span><b>Aplazado:</b> el EPC retrasa sin fecha el fin de las direcciones no estructuradas previsto para el 15/11/2026.</span><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Qué significa para tus remesas →</a></div></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="CuotaSEPA, inicio">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="4" fill="var(--accent)"/><g fill="var(--sheet)"><circle cx="9" cy="9" r="1.3"/><circle cx="9" cy="14" r="1.3"/><circle cx="9" cy="19" r="1.3"/><circle cx="9" cy="24" r="1.3"/></g><path d="M14 16.5l3.2 3.2L24 12.5" stroke="var(--sheet)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Cuota<b>SEPA</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/herramientas/" aria-current="page">Herramientas gratis</a>
+      <a href="/guias/" >Guías</a>
+      <a href="/precios/" >Precios</a>
+      <a class="btn btn-primary btn-sm" href="/generador/" >Abrir generador</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap app-shell">
+  <div style="display:grid;gap:10px;max-width:780px">
+    <p class="crumbs"><a href="/herramientas/">Herramientas</a> / Mandato SEPA</p>
+    <h1 style="font-size:var(--step-3)">Mandato SEPA (orden de domiciliación) para imprimir</h1>
+    <p class="lead">Rellena los datos de tu entidad y, si quieres, los del socio. Deja en blanco lo que vaya a escribir a mano. Luego imprímelo o guárdalo en PDF desde el diálogo de impresión.</p>
+    <p class="toolbar"><span class="muted">¿Lo quieres en blanco?</span> <a class="btn btn-secondary btn-sm" href="/descargas/mandato-sepa-core.pdf">PDF modelo CORE</a> <a class="btn btn-secondary btn-sm" href="/descargas/mandato-sepa-b2b.pdf">PDF modelo B2B</a></p>
+  </div>
+  <div class="grid-2" style="align-items:start">
+    <form class="card" id="form" style="display:grid;gap:14px">
+      <h2 style="font-size:1.1rem">Acreedor (quien cobra)</h2>
+      <div class="field"><label for="m-cname">Nombre</label><input type="text" id="m-cname" placeholder="Club Deportivo Los Álamos"></div>
+      <div class="field"><label for="m-cid">Identificador de acreedor</label><input type="text" id="m-cid" class="mono" placeholder="ES37000G12345674"><span class="hint" id="m-cid-status"></span></div>
+      <div class="field"><label for="m-caddr">Dirección del acreedor</label><input type="text" id="m-caddr" placeholder="C/ Mayor 1, 28001 Madrid, España"></div>
+      <h2 style="font-size:1.1rem">Deudor (opcional)</h2>
+      <div class="field"><label for="m-ref">Referencia de la orden</label><input type="text" id="m-ref" class="mono" placeholder="SOCIO-0001"></div>
+      <div class="field"><label for="m-dname">Nombre del titular</label><input type="text" id="m-dname"></div>
+      <div class="field"><label for="m-daddr">Dirección del titular</label><input type="text" id="m-daddr"></div>
+      <div class="field"><label for="m-iban">IBAN</label><input type="text" id="m-iban" class="mono"><span class="hint" id="m-iban-status"></span></div>
+      <div class="grid-2">
+        <div class="field"><label for="m-scheme">Modelo</label><select id="m-scheme"><option value="CORE">CORE (particulares)</option><option value="B2B">B2B (empresas)</option></select></div>
+        <div class="field"><label for="m-type">Tipo de pago</label><select id="m-type"><option value="recurrente">Recurrente</option><option value="unico">Único</option></select></div>
+      </div>
+      <div class="toolbar"><button type="button" class="btn btn-primary" id="print">Imprimir o guardar PDF</button></div>
+      <p class="hint">¿Necesitas los mandatos de todos tus socios ya rellenos? El <a href="/generador/">generador</a> los crea desde tu Excel (plan Pro).</p>
+    </form>
+    <div style="min-width:0;overflow-x:auto"><div id="preview" style="background:#fff;padding:8px;border-radius:8px"></div></div>
+  </div>
+  <article class="prose">
+    <h2>¿Es obligatorio el mandato?</h2>
+    <p>Sí. Para cobrar un adeudo directo SEPA necesitas una orden de domiciliación firmada por el titular de la cuenta y debes guardarla mientras cobres y después, por si el banco del deudor la pide. Sin mandato, el deudor puede pedir la devolución hasta 13 meses después del cargo (código MD01).</p>
+    <h2>Qué datos lleva</h2>
+    <ul>
+      <li>Referencia única de la orden: la que pondrás en cada recibo de ese socio.</li>
+      <li>Identificador, nombre y dirección del acreedor.</li>
+      <li>Nombre, dirección e IBAN del deudor; el BIC es opcional dentro del EEE.</li>
+      <li>Tipo de pago (recurrente o único), fecha, localidad y firma.</li>
+      <li>El texto legal estándar sobre los derechos del deudor.</li>
+    </ul>
+    <h2>CORE o B2B</h2>
+    <p>El modelo CORE es el general y da al deudor derecho a devolución sin explicaciones durante 8 semanas. El B2B solo vale entre empresas o autónomos, no da derecho a esa devolución y el deudor debe comunicar el mandato a su propio banco antes del primer cobro.</p>
+  </article>
+</div>
+<div id="print-area" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>CuotaSEPA</h4>
+      <ul>
+        <li><a href="/generador/">Generador de remesas SEPA</a></li>
+        <li><a href="/precios/">Precios</a></li>
+        <li><a href="/activar/">Activar clave Pro</a></li>
+        <li><a href="/descargas/plantilla-remesa-sepa.xlsx">Plantilla Excel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Herramientas gratis</h4>
+      <ul>
+        <li><a href="/herramientas/validar-remesa-sepa/">Validar remesa XML</a></li>
+        <li><a href="/herramientas/identificador-acreedor/">Identificador de acreedor</a></li>
+        <li><a href="/herramientas/validar-iban/">Validar IBAN y BIC</a></li>
+        <li><a href="/herramientas/mandato-sepa/">Mandato SEPA para imprimir</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="/guias/remesa-sepa-desde-excel/">Remesa SEPA desde Excel</a></li>
+        <li><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Direcciones estructuradas (15/11/2026)</a></li>
+        <li><a href="/guias/frst-rcur-ooff-fnal/">FRST, RCUR, OOFF y FNAL</a></li>
+        <li><a href="/guias/codigos-devolucion-recibos-sepa/">Códigos de devolución</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/aviso-legal/">Aviso legal</a></li>
+        <li><a href="/legal/privacidad/">Privacidad</a></li>
+        <li><a href="/legal/condiciones/">Condiciones de uso</a></li>
+        <li><span class="muted">Contacto: </span><a href="mailto:dgayosoberlanga@gmail.com">dgayosoberlanga@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="footnote">CuotaSEPA genera ficheros en tu navegador: los IBAN y datos de tus socios no se envían a ningún servidor. No somos una entidad financiera ni intervenimos en los cobros; el fichero lo presentas tú en tu banco. Comprueba siempre las condiciones de tu entidad.</p>
+  </div>
+</footer>
+<script type="module" src="/assets/js/tool-mandate.js?v=e278264d"></script>
+
+</body>
+</html>

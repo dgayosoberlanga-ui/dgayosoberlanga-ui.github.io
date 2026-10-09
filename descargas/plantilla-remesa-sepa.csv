@@ -1,0 +1,4 @@
+﻿Nº socio;Nombre;Apellidos;IBAN;Cuota;Fecha firma mandato;Referencia mandato;Tipo de adeudo;Concepto
+1;Lucía;Fernández Ruiz;ES35 2100 1930 2467 4702 2936;35;15/09/2023;SOCIO-0001;RCUR;Cuota octubre 2026
+2;Hugo;Martín Gómez;ES26 0049 9180 9107 7621 3899;35;15/09/2023;SOCIO-0002;RCUR;Cuota octubre 2026
+3;Martina;López Peña;ES21 0182 9529 9951 0186 7205;17,5;01/10/2026;SOCIO-0003;FRST;Cuota octubre 2026 (media)

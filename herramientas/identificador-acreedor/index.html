@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calcular identificador de acreedor SEPA (ICS) desde el NIF · CuotaSEPA</title>
+<meta name="description" content="Calcula o comprueba el identificador de acreedor SEPA (AT-02) de tu empresa o asociación a partir del NIF: ES + dígitos de control + sufijo + NIF. Gratis y al instante.">
+<link rel="canonical" href="https://dgayosoberlanga-ui.github.io/herramientas/identificador-acreedor/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:site_name" content="CuotaSEPA">
+<meta property="og:title" content="Calcular identificador de acreedor SEPA (ICS) desde el NIF · CuotaSEPA">
+<meta property="og:description" content="Calcula o comprueba el identificador de acreedor SEPA (AT-02) de tu empresa o asociación a partir del NIF: ES + dígitos de control + sufijo + NIF. Gratis y al instante.">
+<meta property="og:url" content="https://dgayosoberlanga-ui.github.io/herramientas/identificador-acreedor/">
+<meta property="og:image" content="https://dgayosoberlanga-ui.github.io/assets/img/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2340c2">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="/assets/fonts/schibsted-grotesk-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=e278264d">
+
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "¿Qué es el identificador de acreedor SEPA?", "acceptedAnswer": {"@type": "Answer", "text": "Es el código que identifica a quien cobra recibos domiciliados en toda la zona SEPA. En España tiene la forma ES + 2 dígitos de control + sufijo de 3 caracteres (normalmente 000) + NIF de la entidad, por ejemplo ES37000G12345674."}}, {"@type": "Question", "name": "¿Cómo se calculan los dígitos de control del identificador de acreedor?", "acceptedAnswer": {"@type": "Answer", "text": "Se toma el NIF, se le añade ES00, se sustituyen las letras por números (A=10, B=11... Z=35), se calcula el resto de dividir entre 97 y se resta de 98. El sufijo no interviene en el cálculo."}}]}</script>
+</head>
+<body>
+<a class="skip" href="#main">Saltar al contenido</a>
+<div class="deadline" role="note"><div class="wrap"><span><b>Aplazado:</b> el EPC retrasa sin fecha el fin de las direcciones no estructuradas previsto para el 15/11/2026.</span><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Qué significa para tus remesas →</a></div></div>
+<header class="site-header">
+  <div class="wrap">
+    <a class="logo" href="/" aria-label="CuotaSEPA, inicio">
+      <svg class="logo-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="24" rx="4" fill="var(--accent)"/><g fill="var(--sheet)"><circle cx="9" cy="9" r="1.3"/><circle cx="9" cy="14" r="1.3"/><circle cx="9" cy="19" r="1.3"/><circle cx="9" cy="24" r="1.3"/></g><path d="M14 16.5l3.2 3.2L24 12.5" stroke="var(--sheet)" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Cuota<b>SEPA</b></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a href="/herramientas/" aria-current="page">Herramientas gratis</a>
+      <a href="/guias/" >Guías</a>
+      <a href="/precios/" >Precios</a>
+      <a class="btn btn-primary btn-sm" href="/generador/" >Abrir generador</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+<div class="wrap app-shell">
+  <div style="display:grid;gap:10px;max-width:780px">
+    <p class="crumbs"><a href="/herramientas/">Herramientas</a> / Identificador de acreedor</p>
+    <h1 style="font-size:var(--step-3)">Identificador de acreedor SEPA</h1>
+    <p class="lead">Calcula el identificador a partir del NIF de tu entidad, o comprueba que el que tienes es correcto.</p>
+  </div>
+  <div class="grid-2" style="align-items:start">
+    <div class="card" style="display:grid;gap:14px">
+      <h2 style="font-size:1.2rem">Calcular desde el NIF</h2>
+      <div class="grid-2">
+        <div class="field"><label for="nif">NIF de la entidad</label><input type="text" id="nif" class="mono" placeholder="G12345674" maxlength="12"></div>
+        <div class="field"><label for="suffix">Sufijo</label><input type="text" id="suffix" class="mono" value="000" maxlength="3"><span class="hint">Normalmente 000.</span></div>
+      </div>
+      <p class="hint" id="nif-status"></p>
+      <div class="stub" style="display:grid;gap:6px">
+        <span class="eyebrow">Identificador de acreedor</span>
+        <span class="mono" id="ics-out" style="font-size:1.4rem;font-weight:500;word-break:break-all">—</span>
+        <div class="toolbar"><button type="button" class="btn btn-secondary btn-sm" id="copy">Copiar</button></div>
+      </div>
+    </div>
+    <div class="card" style="display:grid;gap:14px">
+      <h2 style="font-size:1.2rem">Comprobar un identificador</h2>
+      <div class="field"><label for="check">Identificador</label><input type="text" id="check" class="mono" placeholder="ES37000G12345674" maxlength="35"></div>
+      <div id="check-out" class="hint"></div>
+    </div>
+  </div>
+  <article class="prose">
+    <h2>Qué es el identificador de acreedor</h2>
+    <p>Es el código que identifica a quien cobra recibos por domiciliación (el «acreedor») en todos los adeudos directos SEPA. Aparece en cada remesa y en cada mandato que firman tus socios o clientes, y debe ser siempre el mismo. En el estándar europeo se llama <i>Creditor Identifier</i> o AT-02; en España también se conoce como ICS.</p>
+    <h2>Formato en España</h2>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Posiciones</th><th>Contenido</th><th>Ejemplo</th></tr></thead>
+      <tbody>
+        <tr><td>1-2</td><td>Código de país</td><td><code>ES</code></td></tr>
+        <tr><td>3-4</td><td>Dígitos de control (ISO 7064, módulo 97-10)</td><td><code>37</code></td></tr>
+        <tr><td>5-7</td><td>Sufijo comercial, normalmente 000</td><td><code>000</code></td></tr>
+        <tr><td>8 en adelante</td><td>NIF de la entidad</td><td><code>G12345674</code></td></tr>
+      </tbody>
+    </table></div>
+    <h2>Cómo se calculan los dígitos de control</h2>
+    <ol>
+      <li>Toma el NIF y añádele detrás <code>ES00</code>: <code>G12345674ES00</code>.</li>
+      <li>Cambia cada letra por un número (A=10, B=11 … Z=35): G=16, E=14, S=28 → <code>1612345674142800</code>.</li>
+      <li>Calcula el resto de dividir ese número entre 97 y réstalo de 98. Si sale un solo dígito, pon un 0 delante.</li>
+    </ol>
+    <p>El sufijo no entra en el cálculo, así que el mismo NIF con sufijo 000 o 001 tiene los mismos dígitos de control.</p>
+    <h2>¿Quién me lo asigna?</h2>
+    <p>Lo comunica tu banco cuando contratas la emisión de adeudos directos. Aunque se puede calcular, usa siempre el que te confirme tu entidad, sobre todo si te asignó un sufijo distinto de 000 para separar líneas de cobro.</p>
+    <div class="cta-box"><b>¿Listo para la remesa?</b><p class="muted">El generador calcula y comprueba el identificador por ti y lo guarda para el mes siguiente.</p><a class="btn btn-primary" href="/generador/">Abrir el generador</a></div>
+  </article>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div>
+      <h4>CuotaSEPA</h4>
+      <ul>
+        <li><a href="/generador/">Generador de remesas SEPA</a></li>
+        <li><a href="/precios/">Precios</a></li>
+        <li><a href="/activar/">Activar clave Pro</a></li>
+        <li><a href="/descargas/plantilla-remesa-sepa.xlsx">Plantilla Excel</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Herramientas gratis</h4>
+      <ul>
+        <li><a href="/herramientas/validar-remesa-sepa/">Validar remesa XML</a></li>
+        <li><a href="/herramientas/identificador-acreedor/">Identificador de acreedor</a></li>
+        <li><a href="/herramientas/validar-iban/">Validar IBAN y BIC</a></li>
+        <li><a href="/herramientas/mandato-sepa/">Mandato SEPA para imprimir</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Guías</h4>
+      <ul>
+        <li><a href="/guias/remesa-sepa-desde-excel/">Remesa SEPA desde Excel</a></li>
+        <li><a href="/guias/direccion-estructurada-sepa-noviembre-2026/">Direcciones estructuradas (15/11/2026)</a></li>
+        <li><a href="/guias/frst-rcur-ooff-fnal/">FRST, RCUR, OOFF y FNAL</a></li>
+        <li><a href="/guias/codigos-devolucion-recibos-sepa/">Códigos de devolución</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Legal</h4>
+      <ul>
+        <li><a href="/legal/aviso-legal/">Aviso legal</a></li>
+        <li><a href="/legal/privacidad/">Privacidad</a></li>
+        <li><a href="/legal/condiciones/">Condiciones de uso</a></li>
+        <li><span class="muted">Contacto: </span><a href="mailto:dgayosoberlanga@gmail.com">dgayosoberlanga@gmail.com</a></li>
+      </ul>
+    </div>
+    <p class="footnote">CuotaSEPA genera ficheros en tu navegador: los IBAN y datos de tus socios no se envían a ningún servidor. No somos una entidad financiera ni intervenimos en los cobros; el fichero lo presentas tú en tu banco. Comprueba siempre las condiciones de tu entidad.</p>
+  </div>
+</footer>
+<script type="module" src="/assets/js/tool-ics.js?v=e278264d"></script>
+
+</body>
+</html>
